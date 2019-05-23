@@ -1,0 +1,94 @@
+Git工具使用
+Git的作用：
+代码管理工具
+Git的配置操作
+1、创建git项目
+在github上可以做自己的站点，但是只能放置静态的HTML ，不能放置py代码
+在创建github新项目时，下边的为创建一个新仓库，初始化仓库。
+
+2、将创建好的项目下载到本地
+git clone 下载地址   (选用SSH)
+在第一次使用github时需要配置git
+git config --global user.name ’smallGirl’
+git config --global user.email ’1136815001@qq.com’    //为注册git的邮箱地址
+生成SSH-KEY并添加到github中去
+ssh-keygen -t RSA -C ‘1136815001@qq.com’       // 生成SSH秘钥
+在当前用户文件夹下找到.ssh文件夹，找到.pub文件，为公共秘钥，复制到gitHub中的setting下的SSH and GPG keys 中添加SSH秘钥
+
+
+Pwd    查看当前目录
+Clear   清屏命令
+ls      查看目录下的所有文件
+Windows下边的清屏命令：cls
+
+git仓库
+
+暂存区：暂时保存当前的项目文件，文件并没有保存到git仓库中，暂存区的文件是有可能丢失的。
+当使用git status查看时是用红色表示
+工作区：保存项目文件当前的编辑状态的区域，文件是保存在git仓库的临时区域。
+使用git status查看时是用绿色表示
+git仓库：保存最终提交之后的项目文件的区域，在本地电脑上。
+工作区会变成clear状态。
+
+
+
+Git常用命令(带有中括号的都是可选的)
+git clone url [new name]		---------------将指定项目克隆到本地
+git status					----------------查看git的状态
+git add [filename | path]		----------------将文件或目录添加到工作区filename(*/-A/ /.) 
+git commit -m ‘commit’		----------------将工作区的文件添加到git仓库
+git push [远程主机名] [本地分支名]:[远程分支名]	----------------将本地仓库代码提交到远程仓库(在每次提交代码之前，最好先使用git pull 更新本地代码)
+git pull [远程主机名] [远程分支名]:[本地分支名]	----------------将远程代码拉取到本地仓库
+git branch				----------------查看分支(绿色为当前所在的分支)
+git branch dev				----------------创建一个分支，相当于是创建一个master分支的副本
+git checkout dev			----------------切换分支
+git checkout -b dev			----------------创建并进入新分支
+git merge dev				----------------将其他分支的内容合并到当前分支，dev代表要合并的分支
+git fetch					----------------将远程操作的所有更新信息同步到本地
+git init					----------------将当前目录初始化为一个git仓库
+git remote add origin git@github.com:yangfujuan1996/def.git
+----------------将一个本地的仓库提交到远程仓库中去，注意：远程仓库不能为初始化的
+git push -u -origin master	----------------在第一次将本地已有项目提交到远程的的操作，需要
+push后边加上这一堆命令
+
+
+在一些大型电商网站首页把CSS放在页内的原因：降低服务器压力，提升访问速度
+
+CSS属性
+background-attachment: fixed;   // 相当于一个遮罩层，背景附件设置背景图像是否固定或者随着页面的其余部分滚动。(一共有三个属性，scroll、fixed、inherit)
+块元素居中设置：margin: 0 auto;   上下  左右
+margin: 50px;   上下左右
+margin: 10px 20px 30px;   上 左右 下
+margin: 10px 20px 30px 40px;    上 右 下 左
+行标签居中设置：  只能在父级上进行设置居中   text-align: center;
+
+
+优先级：
+!important		indefinted
+行间样式		1000
+Id				100
+Class			10
+标签			1
+通配符			0
+
+
+
+link 与@import 方式的区别：
+1，link 不仅可以引入css文件，还可以引入其它资源
+2，@import只能引入css文件。
+3，link引入即会被加载，@import会等页面加载完成再加载
+4，JS可以修改link引入的文件，修改不了@import引入的文件
+
+盒模型：标准盒模型、怪异盒模型
+box-sizing: content-box;  //标准盒模型
+box-sizing: border-box;  //怪异盒模型
+
+同级标签的margin会重叠，在设置浮动之后margin会解决重叠问题
+clear: both;    清除浮动
+
+
+
+
+
+
+

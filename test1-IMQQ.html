@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>I'm QQ 每一天，乐在沟通</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        /* div{
+            height: 700px;
+        }
+        div.div2,div.div4,div.div6{
+            height: 500px;
+            background-attachment: fixed;
+        }
+        .div1{
+            background-color: orange;
+        }
+        .div2{
+            background-image: url('img/bg1.jpg');
+        }
+        .div3{
+            background-color: gray;
+        }
+        .div4{
+            background-image: url('img/bg2.jpg');
+        }
+        .div5{
+            background-color: #424242;
+        }
+        .div6{
+            background-image: url('img/bg3.jpg');
+        }
+        .div7{
+            background-color: #f40;
+        } */
+        /* id选择器，类选择器 */
+        /* #box div{
+            width: 200px;
+            height: 100px;
+        }
+        #box::before{
+            content: "";
+            display: table
+        }
+        .div1{
+            margin-top: 100px;
+            background-color: #424242;
+            margin-bottom: 100px;
+        }
+        .div2{
+            background-color: #f40;
+            margin-top: 100px;
+            float: right;
+        }
+        .div3{
+            background-color: #666;
+        } */
+        /* 后代选择器 */
+        .container>li{
+            border: 1px solid red;
+        }
+        .foucus+li{
+            color: blue;
+            font-weight: bolder;
+        }
+        .foucus~li{
+            color: blue;
+            font-weight: bolder;
+        }
+
+        /* 属性选择器 */
+        /* [class]{
+            border: 1px dashed blue;
+        } */
+        /* 严格匹配，属性名和属性值都一样的，并且属性值必须仅此一个的 */
+        /* [class='abc']{
+            color: red;
+        } */
+        /* 在指定属性中其中含有一个的属性值的就可以 */
+        /* [sn~='abcd']{
+            color: red;
+        } */
+        /* 属性为class，并且属性值的开头为ab，ab可以是完整值，也可以是一部分 */
+        /* [class^='ab']{
+            color: yellow;
+        } */
+        /* 属性为class，并且属性值的结尾为ab，ab可以是完整值，也可以是一部分 */
+        /* [class$='t']{
+            color: yellow;
+        } */
+        /* 选中属性为class，属性值包含us的值 */
+        /* [class*='us']{
+            color: aquamarine;
+        } */
+        /* 选中属性class中，属性为ab，或者ab-开头的元素 */
+        /* [class|='ab']{
+            color: blueviolet;
+        } */
+        /* 组合选择器 ，选中input元素中类型为text的元素*/
+        /* input[type='text']{} */
+
+
+        /* 伪类选择器 */
+        a:link{
+            color: tomato;
+        }
+        a:visited{
+            color: aqua;
+        }
+        a:hover{
+            color: pink;
+        }
+        a:active{
+            color: green;
+        }
+        /* 
+        伪类： 通过元素的不同状态或不同类型来选择标签
+        love hate  原则速记a伪类的顺序
+         */
+    </style>
+
+
+
+</head>
+<body>
+
+    <a href="https://www.baidu.com">百度一下，你就知道</a>
+
+
+    <!-- <ul>
+        <li sn>1111111111111</li>
+        <li class="focus ab">2222222222222</li>
+        <li class="abc">3333333333333</li>
+        <li>4444444444444</li>
+        <li class="ab-cd focus current">5555555555555</li>
+        <li>6666666666666</li>
+        <li sn='abcd defg'>7777777777777</li>
+        <li>8888888888888</li>
+        <li>9999999999999</li>
+    </ul> -->
+
+
+
+    <!-- <ul class="container">
+        <li>
+            <p>列表1</p>
+            <ul>
+                <li>1111</li>
+                <li>1111</li>
+                <li class="focus">1111</li>
+                <li>1111</li>
+                <li>1111</li>
+            </ul>
+        </li>
+        <li>
+            <p>列表2</p>
+            <ul>
+                <li>1111</li>
+                <li>1111</li>
+                <li>1111</li>
+                <li>1111</li>
+                <li>1111</li>
+            </ul>
+        </li>
+    </ul> -->
+
+
+    <!-- <div id="box">
+        <div class="div1"></div>
+        <div class="div2"></div>
+        <div class="div3"></div>
+    </div> -->
+
+    <!-- <div class="div1"></div>
+    <div class="div2"></div>
+    <div class="div3"></div>
+    <div class="div4"></div>
+    <div class="div5"></div>
+    <div class="div6"></div>
+    <div class="div7"></div> -->
+</body>
+</html>

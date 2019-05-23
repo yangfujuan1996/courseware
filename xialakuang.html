@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>折叠框</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,li{
+            list-style: none;
+        }
+        .wrapper{
+            border: 1px solid black;
+            width: 200px;
+            margin: 100px auto 0px;
+        }
+        .select>li>div,.select>li>.content>li{
+            width: 200px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center; 
+            border: 1px solid black;
+        }
+        .select>li>div{
+            font-size: 25px;
+            background-color: rgb(123,123,123);
+        }
+        .select>li>.content>li{
+            font-size: 18px;
+            background-color: rgb(240, 245, 247); 
+        }
+        .content{
+            display: none;
+        }
+        .active{
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <ul class="select">
+            <li>
+                <div class="xx" data-id='1'>一级选项1</div>
+                <ul class="content active">
+                    <li>二级选项1</li>
+                    <li>二级选项2</li>
+                    <li>二级选项3</li>
+                    <li>二级选项4</li>
+                    <li>二级选项5</li>
+                </ul>
+            </li>
+            <li>
+                <div class="xx" data-id="2">一级选项2</div>
+                <ul class="content">
+                    <li>二级选项1</li>
+                    <li>二级选项2</li>
+                    <li>二级选项3</li>
+                    <li>二级选项4</li>
+                    <li>二级选项5</li>
+                </ul>
+            </li>
+            <li>
+                <div class="xx" data-id='3'>一级选项3</div>
+                <ul class="content">
+                    <li>二级选项1</li>
+                    <li>二级选项2</li>
+                    <li>二级选项3</li>
+                    <li>二级选项4</li>
+                    <li>二级选项5</li>
+                </ul>
+            </li>
+        </ul>    
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    var xid  = document.getElementsByClassName('xx');
+    var content = document.getElementsByClassName('content');
+    console.log(xid.length)
+    for(var i = 0; i < xid.length; i ++) {
+        (function(j){
+            xid[i].onclick = function(){
+            if(content[j].getAttribute('class').search('active') != -1){
+                content[j].setAttribute('class','content');
+            }else{
+                content[j].setAttribute('class','content active');
+            }
+        }
+        })(i)
+    }
+</script>
