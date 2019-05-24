@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伪类</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        /* button{
+            outline: none;  
+            border: 0px; 
+            去边框
+        } */
+        /* 选中所有标签下边的第一个子元素 */
+        /* :nth-child(1){
+            color: red;
+            font-size: 20px;
+        } */
+        /* :nth-of-type(1){
+            color: green;
+            font-size: 20px;
+        } */
+        /* 选中所有在父级标签中标签里第一个字标签的标签 */
+        /* .content:nth-child(1){
+            color: red;
+            font-size: 20px;
+        } */
+        /* 选中所有在父级标签中同类型标签里第一个子标签的标签 */
+        /* .content:nth-of-type(1){
+            color: green;
+            font-size: 20px;
+        } */
+        /* 选中box下边的第一个子元素并且class为content的元素 */
+        /* .box .content:nth-child(1){
+            color: green;
+            font-size: 20px;
+        } */
+        /* .list li:nth-child(2n){
+            background-color: pink;
+        }
+        .list li:nth-child(2n+1){
+            background-color: plum;
+        } */
+
+        /*  */
+        /* p{
+            font-size: 15px;
+        }
+        p::before{
+            content: 'hello world!!';
+            font-size: 20px;
+            background-color: pink;
+            display: block;
+        }
+        p::after{
+            content: '啦啦啦！';
+            font-size: 20px;
+            background-color: plum;
+            display: block;
+        }
+        p::selection{
+            background-color: yellow;
+        }
+        input::placeholder{
+            color: red;
+        } */
+        /*  */
+        /* .box{ */
+            /* width: 300px; */
+            /* height: 100px; */
+            /* margin: 0 auto;
+            background-color: green;
+            position: relative;
+            overflow: hidden; */
+            /*  设置width 或overflow：hidden可以触发bfc机制
+            浏览器渲染机制：
+                BFC : block format content
+                IFC : inline format content
+             */
+
+        /* } */
+
+
+        /* 一般情况下专门设置一个清除浮动的类，一般命名为clearFix */
+        /* 加上最后一句overflow:hidden是为了兼容低版本的IE浏览器，设置第一个zoom是为了兼容IE9一下的版本 */
+        /* .clearFix{
+            *zoom:1;
+        }
+        .clearFix::after{
+            content: "";
+            clear: both;
+            display: block;
+            overflow: hidden;
+        }
+        .div1{
+            width: 100px;
+            float: left;
+            height: 100px;
+        } */
+        /* clear:left   和right类似
+            同一行的所有同级元素都不能有float:left设置，如果有，这当前元素(设置了clear:left的元素)就自动另起一行
+            clear:both
+            同一行的同级元素都不能设置浮动，如果存在，就自动另起一行
+         */
+        /* .div1,.div2{
+            width: 100px;
+            height: 100px;
+            float: left;
+        }
+
+        .div1{
+            background-color: pink;
+        }
+        .div2{
+            background-color: plum;
+        }
+        .clear{
+            clear: both;
+        }
+        .pop{
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            position: absolute;
+        } */
+
+
+
+
+
+    </style>
+    <style>
+        /* .box div{
+            width: 100px;
+            height: 100px;
+            float: left;
+        }
+        .div1{
+            background-color: red;
+            position: absolute;
+        }
+        .div2{
+            background-color: green;
+            position: relative;
+            left: 50px;
+            top: 100px;
+        }
+        .div3{
+            background-color: blue;
+        }
+        body{
+            position: relative;
+            height: 3000px;
+            border: 2px solid black;
+        }
+        .box{
+            position: sticky;
+            left: 200px;
+            top: 200px;
+            border: 2px solid orange;
+            height: 100%;
+        } */
+        /* body,html{
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        } */
+        /* iframe{
+            border: 0;
+            height: 100%;
+            border: 0;
+            width: 100%;
+        } */
+    </style>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            font-size: 18px;
+            background-color: red;
+            /* 规定过度动画的执行时间 */
+            transition-duration: 0.5s;
+            /* 规定动画执行属性 */
+            /* transition-property: width; */
+            /* 动画效果函数名称，有六种选择，cubic-bezier()为一个函数 */
+            transition-timing-function: cubic-bezier(1,-0.65, 0, 1.39);
+            /* 延迟执行动画时间 */
+            transition-delay: 1.5s;
+            opacity: 1;
+        }
+        .box:hover{
+            width: 300px;
+            /* opacity: 0.5; */
+        }
+
+
+        /* 媒体查询 媒体：用来查看页面的设备 */
+        /* @media screen and (max-width: 600px){
+            .box{
+                background-color: blue;
+                font-size: 26px;
+                width: 200px;
+            }
+        } */
+    </style>
+</head>
+<body>
+    <!-- <button type="submit">提交</button>
+    <a href="http://www.baidu.com">百度一下</a>  -->
+
+    <!-- :nth-child和:nth-of-type的区别 -->
+    <!-- <section class="box">
+        <p class="content">aaaa</p>    
+        <div>11111</div>
+        <div class="content">22222</div>
+        <ul class="list">
+            <li>fsfsfs</li>
+            <li>fsfsfs</li>
+            <li>fsfsfs</li>
+            <li>fsfsfs</li>
+        </ul>
+        <p>bbbb</p>
+        <div>33333</div>
+        <div>44444</div>
+    </section>
+    <section>    
+            <div>11111</div>
+            <p class="content">hahahha</p> 
+            <div>22222</div>
+            <p>bbbb</p>
+            <div>33333</div>
+            <div>44444</div>
+        </section> -->
+
+    <!-- 伪元素 -->
+    <!-- <p>最新通知：所有学生4号返校，4号晚召开毕业生主题班会，5号上午进行毕业典礼，希望所有返校的学生都参加，然后进行部分毕业生座谈，开始发毕业证</p>
+    <input type="text" placeholder="请输入内容"> -->
+    <!-- 浮动 -->
+    <!-- <div class="box clearFix">
+        <div class="div1">div1</div>
+        <div class="div2">div2</div>
+        <div class="clear"></div>
+        <div class="div3">div3</div>
+        <p>wertyuizxghjkxcvbnm,dfghj</p>
+        <div class="pop"></div>
+    </div> -->
+    
+    
+    <!-- 定位 -->
+    <!-- <div class="box">
+            
+        <div class="div1"></div>
+        <div class="div2"></div>
+        <div class="div3"></div>
+    </div> -->
+    <!-- <iframe class="test" src="https://www.baidu.com" frameborder="0"></iframe> -->
+
+    <!-- 媒体 -->
+    <div class="box">hello world!!!</div>
+
+</body>
+
+<script type="text/javascript">
+    // console.log(document.readyState);
+    // document.onreadystatechange = function(){
+    //     console.log(document.readyState);
+    // }
+    // // document.onload 是加载完才执行
+    // // 加载完就执行
+    // $(document).ready(function(){
+
+    // })
+    
+</script>
+
+
+</html>
