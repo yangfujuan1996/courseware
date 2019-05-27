@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2D转换</title>
+    <style>
+        .div1{
+            height: 100px;
+            width: 100px;
+            background-color: blue;
+            /* transform: translate(50px, 100px) */
+            /* transform: scale(0.5,0.5); */
+            /* animation: hh 2s infinite; */
+            /* transform: rotate(0deg); */
+            transform: skew(0deg, 0deg);
+            transition: 1s;
+            border-radius: 50%;
+            text-align: center;
+        }
+        .div2{
+            height: 100px;
+            width: 100px;
+            background-color: red;
+        }
+        .div1:hover{
+            /* transform: rotate(360deg); */
+            transform: skew(-30deg, 30deg)
+        }
+
+
+
+
+
+
+        /* @keyframes hh{
+            from{
+                transform: scale(1,1)
+            }
+            50%{
+                transform: scale(0.5,0.5)
+            }
+            to{
+                transform: scale(1,1)
+            }
+        } */
+
+
+
+        /* 
+        transfrom：
+            1、元素不脱离文档流
+            2、元素层级比正常文档流中的层级高
+            3、相当于relative，两个值为left,top
+            4、在改变值的情况下，需要将原来不需要改动的值进行重新的写入
+         */
+    </style>
+</head>
+<body>
+    <div class="div1">哈哈哈哈</div>
+    <div class="div2"></div>
+</body>
+</html>
