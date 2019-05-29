@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .topBar{
+            width: 960px;
+            height: 80px;
+            margin:  0 auto 15px;
+            background-color: orange;
+        }
+        .container{
+            width: 960px;
+            height: 600px;
+            background-color: pink;
+            margin:  0 auto;
+        }
+        .ad{
+            width: 960px;
+            /* height: 150px; */
+            background-color:red;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="topBar"></div>
+    <div class="ad"></div>
+    <div class="container"></div>
+</body>
+</html>
+
+<script>
+    var ad = document.getElementsByClassName('ad')[0];
+    var ih = 0;
+    setTimeout(f1,2000)
+    function f1(){
+        var flag = 'add';
+        function f2(){
+            var timer = setInterval(function(){
+                flag=='add'?ih ++:ih--;
+                ad.style.height = ih + 'px';
+                if ((flag =='add' && ih >= 150) || (flag =='sub' && ih <= 0)){
+                    clearInterval(timer);
+                    flag = 'sub';
+                }
+            },10)            
+        }
+        f2();      
+        setTimeout(f2,3000);
+    }   
+</script>

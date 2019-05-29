@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>字符串方法</title>
+</head>
+<body>
+    <button style="width: 100px;height:50px;"></button>
+    <script>
+        // 字符串连接
+        // str.concat(' ' + str2 + '!') 
+        // str + ' ' + str2 + '!'
+
+        // charAt()   获取字符串指定位置上的字符，每次只能获取一个字符，位置从0开始
+        // str.substring(start, end)    提取字符串中指定范围的字符  start 开始提取的字符位置   end  结束字符位置+1
+        // str.substr(开始位置，提取的字符个数)    在低版本IE中有兼容性问题
+
+        // str.slice(start, end)    提取字符串的指定片段
+        // str.indexOd(指定字符，开始索引位)     查找字符串中有没有指定的字符，有的话返回索引位，没有的话返回-1
+        // str.lastindexOf()    从后往前找
+        // str.trim()          去掉字符串的首尾空格   专门为表单元素而生          es5新增方法，低版本IE不支持
+        // str.split()         将字符串以分隔符为依据分割成数组\
+
+        // 将数字去除，不是数字的去除
+        var str = 'fdfvgh4444k6h32h6j43hg2kj3hgg53k343jh4kj'
+        // var arr = str.split(/\d+/g);
+
+
+
+
+ 
+        // js的组成部分： ECMA   DOM   BOM
+        // 判断用户是通过什么设备打开网站的？
+        var us = window.navigator.userAgent.toLowerCase();
+        var isWin = us.indexOf('windows') != -1;
+        var isIphone = us.indexOf('iphone') != -1;
+        var isAndroid = us.indexOf('android') != -1;
+
+
+
+
+
+        var bth = document.getElementsByTagName('button')[0];
+        bth.onclick = function(){
+            // 浏览器用代理信息
+            console.log(window.navigator.userAgent)
+        }
+        
+
+    </script>
+</body>
+</html>

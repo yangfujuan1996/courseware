@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .div1{
+            height: 100px;
+            width: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="div1">这是div1</div>
+    <div id="div2">这是div2</div>
+
+
+
+    <!-- 数组 -->
+    <script>
+        // var arr = [1,2,3,4];
+        // arr.forEach(function(val, index, a){
+        //     console.log(index + '-----' + val +'------' + a)
+        // })
+
+
+        var str = 'yueow';
+        // console.log(str.split('').reverse().join(''))
+
+
+
+    </script>
+    <!-- json -->
+    <script>
+        // var obj = {name: 'benben', age: 3};
+        // str = JSON.stringify(obj);
+        // console.log(str, typeof(str));
+        // obj1 = JSON.parse(str);
+        // console.log(obj1, typeof(obj1))
+
+        // 'use strict'
+        // 启用ECMA标准的严格模式，代码必须遵循标准
+
+        // var div = document.getElementsByClassName('div1')[0];
+
+        // var obj = {};
+
+        // function fn1(){
+        //     console.log(this);
+        // }
+
+        // 直接调用的情况下this为window对象，   严格模式下this为undefined
+        // fn1();
+
+        // 事件处理函数:在函数被调用时执行的直接函数
+        // 在事件处理函数中调用其他函数时，在调用的函数中this指向windows
+        // div.onclick = fn1;
+
+        // obj.fn = fn1;
+
+        // obj.fn();
+
+        // setTimeout(fn1,1);
+
+        function getId(target){
+            console.log(this.id);
+            console.log(target);
+        }
+
+        div1.onclick = function(){
+            getId.call(this, 'haha')
+        }
+        div2.onclick = function(){
+            getId.call(this, 'lalalalal')
+        }
+
+    </script>
+</body>
+</html>

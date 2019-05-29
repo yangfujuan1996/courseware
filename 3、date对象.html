@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function getNowTime(){
+        date = new Date();
+        return date;
+    }
+    var nDate = new Date('2019, 4, 29, 18, 0, 0');
+    var timer = setInterval(function(){
+        
+        var date = getNowTime();
+        console.log(date.getTime());
+        var iTime = nDate.getTime() - date.getTime();
+        var d = Math.floor(iTime/86400000);
+        var h = Math.floor(iTime%86400000/3600000);
+        var m = Math.floor(iTime%86400000%3600000/60000);
+        var s = Math.floor(iTime%1000)/60;
+        console.log(iTime)
+        console.log(d, h, m, s);
+        clearInterval(timer);
+    },1000);
+</script>
+</html>
