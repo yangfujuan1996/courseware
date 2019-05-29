@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #list li{
+            list-style: none;
+            position: relative;
+        }
+        .main{
+            width: 600px;
+            margin: 50px auto 0;
+            box-shadow: #333 0 5px 5px;
+            border: 1px solid #333;
+            padding: 10px;
+        }
+        #list li a{
+            position: absolute;
+            right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <textarea name="" id="txt" cols="90" rows="5"></textarea>
+        <input id="btn" type="button" value="发布"/>
+        <ul id='list'>
+            <li>这是一条留言
+                <a class="del" href="javascript:;">删除</a>
+            </li>
+        </ul>
+    </div>
+    
+</body>
+</html>
+
+<script>
+    var oTxt = document.getElementById('txt');
+    var oBtn = document.getElementById('btn');
+    var oList = document.getElementById('list');
+    var aBtn = document.getElementsByClassName('del');
+
+
+
+    oBtn.onclick = function (){
+        var txt = oTxt.value;
+        // 判断是否为空
+        if(!txt.trim()) return;
+        var li = document.createElement('li');
+        li.innerHTML = txt + "<a class='del' herf='javascript:;'>删除</a>";
+        // oList.appendChild(li);    在后边添加
+        oList.insertBefore(li,oList.firstElementChild);
+        oTxt.value = '';
+
+        // 删除新增的元素
+        // for (var i = 0; i < aBtn.length; i ++){
+        //     aBtn[i].onclick = function(){
+        //         oList.removeChild(this.parentNode);
+        //     }
+        // }
+
+
+    }
+    // 删除页面上原始数据
+    // for (var i = 0; i < aBtn.length; i ++){
+    //     aBtn[i].onclick = function(){
+    //         oList.removeChild(this.parentNode);
+    //     }
+    // }
+
+
+
+    // 事件代理/事件委托
+    oList.onclick = function(ev){
+        console.log(ev);
+        if (ev.target.nodeName == 'A'){
+            oList.removeChild(ev.target.parentNode);
+        }
+    }
+
+
+</script>

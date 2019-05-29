@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .nav{
+            width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .nav li{
+            list-style: none;
+            display: inline-block;
+            height: 50px;
+            width: 100px;
+            
+        }
+        li.active{
+            border-bottom: 1px solid #f60;
+        }
+        div.active{
+            display: block;
+        }
+        .content{
+            height: 200px;
+            background-color: pink;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div id='root'>
+        <ul class="nav">
+            <li class="active">标题一</li>
+            <li>标题二</li>
+            <li>标题三</li>
+        </ul>
+        <div class="content active">内容一</div>
+        <div class="content">内容二</div>
+        <div class="content">内容三</div>
+    </div>
+    
+</body>
+</html>
+
+<script>
+    var navTit = document.getElementsByClassName('nav')[0].children;
+    var navCon = document.querySelectorAll('#root div');
+
+    for (var tit = 0; tit < navTit.length; tit ++){
+        // 自定义索引，确定当前点击元素的索引位
+        navTit[tit].index = tit;
+        navTit[tit].onclick = function (){
+            for(var i = 0; i < navTit.length; i ++){
+                navTit[i].className = '';
+                navCon[i].className = 'content';
+            }
+            this.className = 'active';
+            // 根据索引位去显示对应页面
+            navCon[this.index].className = 'content active';
+        } 
+    }
+</script>
