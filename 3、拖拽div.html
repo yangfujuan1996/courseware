@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .div1{
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1"></div>
+    <input type="button" value="确定">
+</body>
+</html>
+<script>
+    var div = document.getElementsByClassName('div1')[0];
+    var btn = document.getElementsByTagName('input')[0];
+    var arr = [];
+    var timer;
+
+
+
+    btn.onclick = function(){
+        // arr.reverse();
+        // arr.forEach(element => {
+        //     console.log(element.x, element.y)
+        //     timer = setTimeout(function(){
+        //         div.style.left = element.x + 'px';
+        //         div.style.top = element.y + 'px';
+        //     },1000)
+        // });
+        // clearInterval(timer);
+        // console.log(arr)
+
+        
+        var index = arr.length - 1;
+        timer = setInterval(function(){
+            div.style.left = arr[index]['x'] + 'px';
+            div.style.top = arr[index]['y'] + 'px';
+            index --;
+            if(index < 0) clearInterval(timer);
+        },30)
+        
+        
+
+
+
+
+
+    }
+
+    document.onclick = function(e){
+        var e = e || event;
+        // console.log(e);
+    }
+    document.onkeydown = function(e){
+        var e = e || event;
+        // console.log(e);
+    }
+
+
+    div.onmousedown = function (ev){
+        
+        document.onmousemove = function(ev){
+            var x = ev.clientX;
+            var y = ev.clientY;
+            div.style.left = x + 'px';
+            div.style.top = y + 'px';
+            arr.push({'x':x,'y':y});
+        }
+
+        document.onmouseup = function () {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+
+
+    }
+
+
+</script>

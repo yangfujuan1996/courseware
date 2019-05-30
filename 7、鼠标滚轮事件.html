@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            height: 3000px;
+        }
+    </style>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var i = 0;
+    // 在FireFox浏览器中没有onmousewheel这个属性
+    // document.onmousewheel = function(){
+    //     console.log('鼠标在滚动' + ++i)
+    // }
+    // 在FireFox浏览器中绑定鼠标滚轮事件的属性
+    // document.addEventListener('DOMMouseScroll',function(){
+    //     console.log('鼠标滚轮在滚动')
+    // })
+
+    
+    document.onmousewheel = mouseScroll;
+    var bDown;
+    document.addEventListener('DOMMouseScroll',mouseScroll);
+    function mouseScroll(ev){
+        // console.log('鼠标滚轮在滚动')
+        var ev = ev || window.event;
+        // console.log(ev)
+        console.log(ev.wheelDelta)   // 在chroom浏览器中的上下属性，向上为正，向下为负
+        // console.log(ev.detail)    // 在firefox浏览器的鼠标上下滚动的属性   向上为负，向下为正
+
+        // 输出滚动条是在向上还是向下走
+
+        ev.wheelDelta?bDown=ev.wheelDelta<0:bDown=ev.detail>0;
+        if(bDown){
+            console.log('鼠标向上走');
+        }else{
+            console.log('鼠标向下走');
+        }
+
+
+
+    }
+
+
+
+
+
+
+</script>

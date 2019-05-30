@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>
+<script>
+    var div = document.getElementsByTagName('div')[0];    
+    var iLeft = div.offsetLeft,iTop = div.offsetTop, speed , speed1,isRun;
+
+    document.onkeydown = function(e){       
+        var e = e || event;
+        speed = 5;
+        if (e.keyCode == 39){
+            isRun = true;
+            speed1 = 0;
+        }else if (e.keyCode == 37){
+            isRun = true;
+            speed1 = 0;
+            speed = -5;
+        }else if (e.keyCode == 38){
+            isRun = true;
+            speed = 0;
+            speed1 = -5;
+        }else if (e.keyCode == 40){
+            isRun = true;
+            speed = 0;
+            speed1 = 5;
+        }
+
+    }
+    document.onkeyup = function(){
+        isRun = false;
+    }
+    // 使用定时器的方式解决在按键按下一开始的卡顿问题
+    setInterval(function(){
+        if(isRun){
+            iLeft += speed;
+            iTop += speed1;
+            div.style.left = iLeft + 'px';
+            div.style.top = iTop + 'px';
+        }
+    },10)
+    
+
+
+</script>

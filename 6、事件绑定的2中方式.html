@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>
+<script>
+    var div = document.getElementsByTagName('div')[0];
+    
+    
+
+    div.addEventListener('click',fn1)
+    div.addEventListener('click',fn2)
+    div.onclick = function(){
+        console.log('这是以函数方式绑定事件的方式')
+    }
+
+    function fn1(){
+        console.log('这是以addEventListener绑定的第一个事件')
+    }
+    function fn2(){
+        console.log('这是以addEventListener绑定的第二个事件')
+    }
+    div.removeEventListener('click', fn1)
+</script>
