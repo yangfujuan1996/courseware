@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.4.1-min.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .div1{
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            left: 30%;
+            top: 30%;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1"></div>
+</body>
+</html>
+
+<script>
+    // $('.div1').hover(function(){
+    //     $(this).animate({width: '800px'});
+    //     $(this).animate({height: '800px'});
+    // },function(){
+    //     $(this).animate({height: '200px'});
+    //     $(this).animate({width: '200px'});      
+    // })
+    $('.div1').hover(function(){
+        $(this).animate({left: '800px',top: '0px'});
+    },function(){
+        console.log('hahaha')
+        $(this).animate({height: '200px'});
+        $(this).animate({width: '200px'});      
+    })
+
+
+
+</script>
+
+
+
+<script>
+    // var div = $('.div1')[0];
+    // var timer, flag;
+    // div.onclick = function(){
+    //     console.log('hhhh')
+        
+
+        
+    //     // $('.div1')[0].slideUp('slow')
+
+
+
+    // }
+    // function slice(des, speed){
+    //     if (!flag) return;
+    //     flag = false;
+    //     if (des == 'width'){
+    //         timer = setInterval(function(){
+    //             console.log(div.offsetWidth)
+    //             div.style.width = div.offsetWidth + speed + 'px';
+    //             if (div.offsetWidth >= 800) clearInterval(timer)
+    //         },10)
+    //     }else if(des == 'height'){
+    //         timer = setInterval(function(){
+    //             div.style.height = div.offsetHeight - 10 + 'px';
+    //             if (div.offsetWidth <= 200) clearInterval(timer)
+    //         },10)
+    //     } 
+   
+    // }
+</script>

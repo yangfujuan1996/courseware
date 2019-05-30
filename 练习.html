@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.4.1-min.js"></script>
+    <!-- <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        div{
+            width: 700px;
+            margin: 150px auto 0px;
+            font-size: 20px;
+            box-shadow: #333 0px 5px 5px;
+            box-sizing: content-box;
+            border: 1px solid #333;
+            padding: 10px;
+        }
+        #con{
+            font-size: 20px;
+        }
+        #btn{
+            /* float: right; */
+            font-size: 20px;
+            display: block;
+        }
+        .liuyan{
+            width: 700px;
+        }
+        .liuyan li{
+            white-space: 100%;
+            word-wrap: break-word;
+            padding: 10px;
+            position: relative;
+        }
+        .liuyan li a{
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid black;
+            background-color: #f60;
+            position: absolute;
+            right: 15px;
+        }
+    </style> -->
+</head>
+<body>
+    <!-- <div>
+        <textarea name="con" id="con" cols="60" rows="10"></textarea>
+        <input id='btn' type="button" value="提交">
+        <ul class="liuyan">
+            <li>
+                这是一条留言
+                <a class="del" href="javascript:;">删除</a>
+            </li>
+
+
+        </ul>
+    </div> -->
+
+    <div class="test">hahahaha</div>
+</body>
+</html>
+
+
+<!-- <script>
+    $('#btn').click(function(){
+        var txt = $('#con').val();
+        var li = $('<li>' + txt + '<a class="del" href="javascript:;">删除</a>' +'</li>' )
+        $('.liuyan').eq(0).prepend(li);
+
+        // var del = 
+        for (var index = 0; index < $('.del').length; index ++){
+            $('.del').eq(index).click(function(){
+                $(this).parent().remove()
+            })
+        }
+    })
+    for (var index = 0; index < $('.del').length; index ++){
+        $('.del').eq(index).click(function(){
+            $(this).parent().remove()
+        })
+    }
+
+
+
+</script> -->
+
+<script>
+    $.fn.extend({
+        insertStar: function(){
+            $(this).before('★');
+        }
+    })
+
+    $('.test').eq(0).insertStar();
+
+
+    $.extend({
+        pow: function(target){
+            if (target.constructor === Number){
+                return target * target;
+            }else if(target.constructor === Array){
+                var result = [];
+                for(var i in target){
+                    result.push(target[i] * target[i])
+                }
+                return result;
+            }else{
+                alert('请传正确的参数！')
+            }
+        }
+    })
+
+
+
+</script>

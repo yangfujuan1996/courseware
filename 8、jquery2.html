@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="jquery-3.4.1-min.js"></script>
+  <style>
+      /* *{
+          border: 1px solid
+      } */
+  </style>
+</head>
+<body>
+  
+<div class="box">div.box</div>
+
+<ul>
+    <li>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    </li>
+    <li></li>
+    <li class="focus"></li>
+    <li></li>
+    <li></li>
+</ul>
+
+<div class="wrap">
+    <h2>这是一个标题</h2>
+    <p>这是第一段文字</p>
+    <p></p>
+    <p>这是第二段文字</p>
+    <p></p>
+    <p>这是第三段文字</p>
+</div>
+</body>
+</html>
+
+<script>
+
+    // var li = $('ul:first > li')
+    // li.css({'border':'1px solid red'})
+
+    // $('ul>li').not('.focus').css({'border':'1px solid blue'})
+    // 选中空元素
+    $('.wrap>p:empty').css({'background': 'green', 'border':'1px solid blue'});
+    // 给选中的元素包一层标签
+    $('.wrap>h2').wrapInner('<span></span>').css({'background': 'red'});
+    // 选择含有指定文字的元素
+    $('p:contains("文字")').css({'color': 'red'})
+
+    // 扩展插件
+    // 文档处理中的each
+    // $('li').each(function () {
+    //     alert($(this).html());
+    // })
+
+    // each()的工具方法
+    // var arr = [1,2,3,4];
+    // $.each(arr, function(index, val){
+    //     console.log(index, val)
+    // })
+
+    // 给jq扩展一个sayHello()方法
+
+    // 给jQuery扩展新的工具方法
+    // $.extend({
+    //     sayHello : function () {
+    //         alert('hello world!!!')
+    //     }
+    // })
+    // $.sayHello();
+
+    // 给jQuery的DOM对象扩展新方法
+    // $.fn.extend({
+    //     getFirstChar: function () {
+    //         alert($(this).text().charAt(0));
+    //     }
+    // })
+    // $('h2').getFirstChar()
+
+
+
+
+
+
+
+
+</script>

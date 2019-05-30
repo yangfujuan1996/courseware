@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .menu{
+            width: 100px;
+            border: 1px solid black;
+            padding: 10px;
+            display: none;
+            margin: 0 auto;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">鼠标坏了，换鼠标吧</div>
+
+
+    <!-- <div class="hh">点我一下试试呀</div> -->
+</body>
+</html>
+<script>
+
+    document.oncontextmenu = function (ev) {
+        var menu = document.getElementsByClassName('menu')[0];
+        console.log(menu.style.left)
+        menu.style.left = ev.clientX + 'px';
+        menu.style.top = ev.clientY + 'px';
+        menu.style.display = 'block';
+        setTimeout(function(){
+            menu.style.display = 'none'
+        },2000)
+        return false;
+    }
+
+    // var hh = document.getElementsByClassName('hh')[0];
+    // hh.onclick = function (){
+    //     while (true){
+    //         alert('叫你手欠！')
+    //     }
+    // }
+
+
+    
+
+
+</script>
