@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    // $.ajax({
+    //     // method : 'post',
+    //     data: {
+    //         user: '笨笨'
+    //     },
+    //     // url: 'http://dabaojian.applinzi.com/data/getUser.php',
+    //     // url: 'http://127.0.0.1/demo.xml',
+    //     url: 'https://www.toutiao.com/api/pc/feed/',
+    //     // url: 'hahah',
+    //     // dataType: 'json',
+    //     success: function(data){
+    //         console.log(data);
+    //     },
+    //     error: function(e){
+    //         console.log(e);
+    //     },
+    // })
+
+    $.ajax({
+        // method : 'post',
+        dataType: 'jsonp',
+        data: {
+            user: '笨笨'
+        },
+        url: 'http://dabaojian.applinzi.com/data/getUser.php',
+        // url: 'http://127.0.0.1/demo.xml',
+        // url: 'https://www.toutiao.com/api/pc/feed/',
+        // url: 'hahah',
+        // dataType: 'json',
+        success: function(data){
+            console.log(data);
+        },
+        error: function(e){
+            console.log(e);
+        },
+    })
+
+
+</script>

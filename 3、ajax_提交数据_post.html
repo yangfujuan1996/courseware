@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>ajax同源策略</h2>
+
+    <form id='fm1' action="" method="post">
+        <input type="file" name='upload'>
+        <input type="button" value="上传" id="btn">
+    </form>
+    
+</body>
+</html>
+
+<script>
+
+    var btn = document.getElementById('btn');
+    var fm1 = document.getElementById('fm1');
+    btn.onclick = function(){
+        // 使用ajax方式提交，创建一个表单对象，将文件包装成from对象
+        var data = new FormData();
+        data.append('upload', fm1.upload.file[0]);
+
+
+
+
+        var xhr = new XMLHttpRequest();
+        // var user = '笨笨',
+        //     age = 3;
+
+        // var url = 'http://dabaojian.applinzi.com/data/getUser.php';
+        var url = 'ajax_upload.php'
+
+        // data = 'user=' + user + '&age=' + age;
+        // console.log(data)
+
+        xhr.open('post', url)
+
+
+        xhr.onload = function () {
+            console.log(xhr.responseText)
+        };
+        // post方式提交，要设置请求头来标识提交的数据类型
+        xhr.setRequestHeader(
+            'Content-Type',
+            // url参数请求头
+            // 'application/x-www-form-urlencoded',
+            // 上传二进制文件
+            // 'multipart/form-data'
+        )
+
+        xhr.send(data);   
+
+
+
+    }
+
+    
+
+
+
+</script>

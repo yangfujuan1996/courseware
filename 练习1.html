@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.4.1.min.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        li{
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul id="root">
+
+        </ul>
+
+    </div>
+    
+</body>
+</html>
+<script>
+    $.ajax({
+        method: 'post',
+        url: 'https://www.toutiao.com/api/pc/feed/',
+        dataType: 'jsonp',
+        data: {
+
+        },
+        success: function(data){
+            var result = data.data;
+            show(result);
+        },
+        error: function(xhr){
+            console.log(xhr);
+        }
+    })
+    var ul = $('#root');
+
+    function show(result){
+        console.log(result);
+        result.forEach(function(v, i , array) {
+            var li = document.createElement('li');
+            li.style.position = 'relative';
+            li.style.height = '200px';
+            var h3 = document.createElement('h3');
+            h3.style.textAlign = 'center';
+            h3.innerText = v.title;
+            var img = document.createElement('img');
+            img.src = v.middle_image;
+            img.style.width = '200px';
+            img.style.height = '150px';
+            img.style.cssFloat = 'left';
+            var span = document.createElement('span');
+            
+            span.innerText = v.abstract;
+            li.append(h3);
+            li.append(img);
+            li.append(span);
+            ul.append(li);
+        });
+    }
+</script>

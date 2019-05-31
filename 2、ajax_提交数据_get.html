@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>ajax同源策略</h2>
+    
+</body>
+</html>
+
+<script>
+
+    var xhr = new XMLHttpRequest();
+    var user = '笨笨',
+        age = 3;
+
+    var url = 'http://dabaojian.applinzi.com/data/getUser.php';
+
+    url = url + '?user=' + user + '&age=' + age;
+    console.log(url)
+
+
+
+    xhr.open('get', url)
+
+
+    xhr.onload = function () {
+        console.log(xhr.responseText)
+    };
+
+    xhr.send(null);   
+
+
+
+
+</script>

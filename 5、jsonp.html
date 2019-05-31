@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    /*
+    jsonp的实现原理
+    利用script标签执行外部代码，将本地函数传给外部代码进行执行，完成数据的返回
+    */
+
+    var out_data;
+    function fn1(data){
+        out_data = data;
+        console.log(data);
+    }
+
+    function getJsonp(url, callback){
+        var oScript = document.createElement('script');
+        oScript.src = url + '?callback=' + callback;
+
+        document.body.appendChild(oScript);
+    }
+
+
+    // getJsonp('demo.php', 'fn1')
+    getJsonp('https://www.toutiao.com/api/pc/feed/', 'fn1')
+</script>
