@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <ul class="root">
+
+    </ul>
+    
+</body>
+</html>
+<script>
+    $.ajax({
+        url: 'getBDImage.php',
+        method: 'get',
+        data: {
+
+        },
+        dataType: 'jsonp',
+        success: function(data){
+            var result = data.data;
+            show(result);
+        },
+        error: function (xhr) {
+            console.log(xhr);
+        }
+    })
+
+
+    function show (result) {
+        var ul = $('.root').eq(0);
+        result.forEach(function(v, i, array){
+            console.log(v.abs);
+            var li = document.createElement('li');
+            li.style.position = 'relative'
+            var div = document.createElement('div');
+            div.innerText = v.abs;
+            var img = document.createElement('img');
+            var span = document.createElement('span');
+            span.innerText = v.desc;
+            img.src = v.obj_url;
+            // img.style.position = 'absolute';
+
+            // li.style.height = img.offsetHeight + 'px';
+            console.log(img.offsetHeight);
+
+
+            li.append(div);
+            li.append(img);
+            li.append(span);
+            ul.append(li);
+
+        });
+    }
+
+
+
+
+
+</script>
