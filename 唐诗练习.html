@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.4.1.min.js"></script>
+    <style>
+        *{
+            padding: 0;margin: 0;
+        }
+        body{
+            min-width: 960px;
+            /* background-color: pink; */
+        }
+        ul, li{
+            list-style: none;
+        }
+        #root{
+            width: 960px;
+            /* background-color: #f3f3f3; */
+            margin: 0 auto;
+            position: relative;
+        }
+        #root h1{
+            text-align: center;
+            margin: 5px 0px;
+            background-color: #f3f3f3;
+            padding: 10px;
+        }
+        #root ul{
+            float: left;
+            width: 230px;
+            margin: 10px 0px 0px 10px;
+        }
+        #root ul li{
+            float: left;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f3f3f3;
+            padding: 10px;
+            margin: 8px 0px;
+        }
+        #root ul li h2,#root ul li h3{
+            text-align: center;
+            line-height: 2em;
+        }
+        #root ul li p{
+            text-align: center;
+            line-height: 1.5em;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div id="root">
+        <h1>唐诗欣赏</h1>
+        <ul>
+            <!-- <li>
+                <h2>帝京篇十首 一</h2>
+                <h3>太宗皇帝</h3>
+                <p>秦川雄帝宅，函谷壮皇居。</p>
+                <p>绮殿千寻起，离宫百雉余。</p>
+                <p>连甍遥接汉，飞观迥凌虚。</p>
+                <p>云日隐层阙，风烟出绮疏。</p>
+            </li> -->
+        </ul>
+        <ul></ul>
+        <ul></ul>
+        <ul></ul>
+    </div>
+    
+</body>
+</html>
+<script>
+    $.ajax({
+        method: 'get',
+        dataType: 'jsonp',
+        url: 'http://jsonp.applinzi.com/getTangShi.php',
+        data: {
+            page: 3,
+            count: 5,
+        },
+        success: function(data){
+            var result = data.result;
+            // console.log(data);
+            console.log(result);
+            show(result);
+        },
+        error: function(xhr){
+            console.log(xhr);
+        }
+    })
+
+
+    function show(result){
+        var ul = $('#root ul');
+        var index = 0;
+        
+
+        result.forEach(function(v,i,array) {
+
+            var li = document.createElement('li');
+            var h2 = document.createElement('h2');
+            var h3 = document.createElement('h3');
+            h2.innerText = v.title;
+            h3.innerText = v.authors;
+            li.append(h2);
+            li.append(h3);
+            var content = v.content.split('|');
+            for (var c_index in content){
+                var p = document.createElement('p');
+                p.innerText = content[c_index];
+                li.append(p);
+            }
+
+
+            //  获取到几列的长度
+            var arr = [];
+            for(var m = 0 ; m < ul.length; m ++){
+                arr.push(ul[m].offsetHeight);
+            }
+            // 找出最短的一列
+            max_h = Math.min.apply(null,arr);
+            index = arr.indexOf(max_h);
+
+
+            ul[index].append(li);
+            index ++;
+        });
+    }
+
+
+</script>
