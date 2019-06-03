@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var arr1 = [1,2,3,4];
+        // var arr2 = [5,6,7,8];
+        // console.log([...arr1,...arr2])
+
+        // 展开运算符，在数组中的名称可以随意取
+        var arr3 = [1,2,3,4,5,6,7,8,9];
+        // var [num1, num2, ...newArr] = arr3;        
+        // console.log(num1, num2, newArr);
+        // 解构
+        // var [num1, num2,,num4] = arr3;
+        // console.log(num1, num2,num4);
+
+        // 对象中的变量名必须和属性名一致
+        // var obj = {a: 1, b: 2, c: 3, d: 4,e: 5}
+        // var {d, b,...obj2} = obj;
+        // console.log(b, d, obj2)
+    </script>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <div>
+        <p>a</p>
+        <p>b</p>
+        <p>c</p>
+        <p>d</p>
+        <p>e</p>
+        <p>f</p>
+        <p>g</p>
+    </div>
+    <script>
+        // var lis = document.getElementsByTagName('li');
+        // var ps = document.getElementsByTagName('p');
+        // lis 为一个HTML标签列表   是一个类数组
+        // 将类数组转换成数组
+        // var arrLi = [...lis,...ps];
+        // arrLi.forEach(function(li){
+        //     li.style.backgroundColor = 'pink';
+        // })
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    var arr = [10,2,44,50,-1,65];
+    // 1、判断数组中的值是否都大于50？
+    console.log(arr.every(function(v,i,array){
+        return v > 50;
+    }));
+    // 2、检查数组中有没有大于60的值？
+    console.log(arr.some(function(v, i, array){
+        return v > 60;
+    }))
+    // 3、对数组进行求和运算？
+    console.log(arr.reduce(function(total,v){
+        return total + v;
+    }))
+    </script>
+</body>
+</html>

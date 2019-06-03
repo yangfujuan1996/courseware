@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var x = 10, y = 20, z = 50;
+        var obj = {
+            x: x,
+            y: y,
+            c: z,
+            name: '笨笨',
+            sayName: function(){
+                console.log(this.name);
+            }
+        }
+        var obj2 = {x,y,c:z,name:'大黄',sayName(){console.log(this.name)}};
+        console.log(obj);
+        console.log(obj2);
+        // 给对象属性赋值的变量名称与对象的属性名称相同，属性名称可以省略
+    </script>
+</body>
+</html>

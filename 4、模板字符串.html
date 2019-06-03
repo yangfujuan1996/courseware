@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="list">
+        <!-- <li>            
+            <span>小明</span>芳龄
+            <strong>18</strong>岁
+        </li> -->
+    </ul>
+    <script>
+        var data = [
+            {name: '笨笨', age: 18},
+            {name: '哈哈', age: 2},
+        ];
+        var list = document.getElementsByClassName('list')[0];
+        data.forEach(function(v, i, arr){
+            var name = v.name;
+            var age = v.age;
+            var li = document.createElement('li');
+            // li.innerHTML = '<span>' + name + '</span>芳龄' + '<strong>' + age + '</strong>岁';
+            li.innerHTML = `
+            <span>${name}</span>芳龄
+            <strong>${age}</strong>岁
+            `;
+            list.append(li);
+        })
+
+    </script>
+</body>
+</html>
