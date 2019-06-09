@@ -8,30 +8,40 @@
     <script src="js/vue.js"></script>
     <link rel="stylesheet" href="../dist/css/bootstrap.css">
     <script src="js/axios.min.js"></script>
+    <style>
+        [v-cloak]{
+            display: none!important;
+        }
+    </style>
 </head>
 <body>
-    <div id="app">
+    <div id="app" v-cloak>
         <div class="container">
+            
             <div class="rows">
                 <p class="col-md-6 col-md-offset-6">
                     <span class="btn btn-default" :class="{'btn-primary': isLogin}" @click="isToggleLogin(true)">登录</span>
                     <span class="btn btn-default" :class="{'btn-primary': !isLogin}" @click="isToggleLogin(false)">注册</span>
                 </p>
             </div>
-            <div class="rows" v-if="isLogin">
+            <div class="rows" v-if="loginStatus">
+                <p>欢迎回来，{{username}}!</p>
+                <span class="btn btn-sm" @click="loginOut()">退出</span>
+            </div>
+            <div class="rows" v-else-if="isLogin">
                 <div class="col-md-6 col-md-offset-3">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" autocomplete="off">
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="username">用户名：</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" id="username">
+                                <input class="form-control" type="text" id="username" required v-model="user">
                             </div>
                             
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="pwd">密码：</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="password" id="pwd">
+                                <input class="form-control" type="password" id="pwd" required v-model="pwd">
                             </div>
                         </div>
                         <div class="form-group">
@@ -46,24 +56,24 @@
             
             <div class="rows" v-else>
                 <div class="col-md-6 col-md-offset-3">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" autocomplete="off">
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="username1">用户名：</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" id="username1">
+                                <input class="form-control" type="text" id="username1" required v-model="user">
                             </div>                        
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="pwd1">密码：</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="password" id="pwd1">
+                                <input class="form-control" type="password" id="pwd1" required v-model="pwd">
                             </div>
                             
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="isPwd">确认密码：</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="password" id="isPwd">
+                                <input class="form-control" type="password" id="isPwd" required v-model="verifyPwd">
                             </div>          
                         </div>
                         <div class="form-group">
@@ -74,6 +84,7 @@
                     </form>                   
                 </div>
             </div>
+            
         </div>
         
     </div>
@@ -84,6 +95,11 @@
         el: '#app',
         data: {
             isLogin: true,
+            user: "",
+            pwd: "",
+            verifyPwd: "",
+            loginStatus: 0,
+            username: "",
         },
         computed:{
             loginStatus(){
@@ -97,12 +113,48 @@
                 // localStorage.isLogin = status;   
                 localStorage.isLogin = Number(status);              
             },
+            login(){
+                if(!this.user || !this.pwd){
+                    alert('请输入用户名和密码！！！');
+                    return;
+                }
+                // 判断长度不能小于4位
+                if(this.user.length < 4){
+                    alert('用户名长度不能少于4位！');
+                    return;
+                }
+                // 密码不能是纯数字，并且长度 不能少于6位
+                // if(this.pwd.length < 6 || /^\d+$/.test(this.pwd)){
+                //     alert('密码长度不能少于6位，也不能是纯数字');
+                // }
+                // XMLHttpRequest() 和fetch()类似，fetch()是ES6新增的方法
+                // fetch().then()
+
+                axios.post('/courseware/login_php/login.php', {
+                    username: this.user,
+                    password: this.pwd
+                }).then(res => {
+                    if(res.data.success){
+                        this.loginStatus = 1
+                        localStorage.loginStatus = 1;
+                        console.log(res);
+                        this.username = res.data.username;
+                        localStorage.username = this.username;
+                    }
+                });
+            },
+            loginOut(){
+                this.loginStatus = 0;
+                localStorage.username = "";
+                localStorage.loginStatus = 0;
+            },
             register(){
                 var isPwd = document.getElementById('isPwd').value;
                 var pwd1 = document.getElementById('pwd1').value;
                 var username = document.getElementById('username1').value;
                 if(username.trim() == "" || pwd1.trim() == "" || isPwd.trim() == "" ){
-                    alert('请输入完整内容')
+                    alert('请输入完整内容');
+                    return;
                 }
                 if (isPwd == pwd1){
                     console.log(username, pwd1)
@@ -110,24 +162,40 @@
                     {
                         username: username,
                         password: pwd1
-                    }).then(res=>console.log(res.data))
+                    // }).then(res=>console.log(res.data))
+                    }).then(res=>{
+                        if(!res.data.success){
+                            alert(res.data.msg);
+                            return;
+                        }
+                        console.log(res);
+                    })
                 }else{
                     alert('两次输入的密码不一致')
                 }
             },
-            login(){
-                var pwd = document.getElementById('pwd').value;
-                var username = document.getElementById('username').value;             
-                axios.post("/courseware/login_php/login.php",
-                {
-                    username: username,
-                    password: pwd
-                }).then(res=>console.log(res.data))
-            }
         },
+
+
+
+
+
+
+            
+        //     login(){
+        //         var pwd = document.getElementById('pwd').value;
+        //         var username = document.getElementById('username').value;             
+        //         axios.post("/courseware/login_php/login.php",
+        //         {
+        //             username: username,
+        //             password: pwd
+        //         }).then(res=>console.log(res.data))
+        //     }
+        // },
         created() {
             this.isLogin = localStorage.isLogin * 1 ? true : false;
-            console.log(localStorage.isLogin);
+            this.loginStatus = localStorage.loginStatus * 1;
+            this.username = localStorage.username;
         },
     })
 </script>
