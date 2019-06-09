@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue   v-if</title>
+    <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="../dist/css/bootstrap.css">
+    <script src="js/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="rows">
+                <p class="col-md-6 col-md-offset-6">
+                    <span class="btn btn-default" :class="{'btn-primary': isLogin}" @click="isToggleLogin(true)">登录</span>
+                    <span class="btn btn-default" :class="{'btn-primary': !isLogin}" @click="isToggleLogin(false)">注册</span>
+                </p>
+            </div>
+            <div class="rows" v-if="isLogin">
+                <div class="col-md-6 col-md-offset-3">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="username">用户名：</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" id="username">
+                            </div>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="pwd">密码：</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="password" id="pwd">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <input class="btn btn-success" type="button" value="登录" @click="login()">
+                            </div>
+                        </div>
+                        
+                    </form>                   
+                </div>
+            </div>
+            
+            <div class="rows" v-else>
+                <div class="col-md-6 col-md-offset-3">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="username1">用户名：</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" id="username1">
+                            </div>                        
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="pwd1">密码：</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="password" id="pwd1">
+                            </div>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="isPwd">确认密码：</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="password" id="isPwd">
+                            </div>          
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <input class="btn btn-success" type="button" value="注册" @click="register()">
+                            </div>
+                        </div>
+                    </form>                   
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            isLogin: true,
+        },
+        computed:{
+            loginStatus(){
+                isLogin = localStorage.isLogin ? true : false;
+                return isLogin;
+            }
+        },
+        methods: {
+            isToggleLogin(status){
+                this.isLogin = status;
+                // localStorage.isLogin = status;   
+                localStorage.isLogin = Number(status);              
+            },
+            register(){
+                var isPwd = document.getElementById('isPwd').value;
+                var pwd1 = document.getElementById('pwd1').value;
+                var username = document.getElementById('username1').value;
+                if(username.trim() == "" || pwd1.trim() == "" || isPwd.trim() == "" ){
+                    alert('请输入完整内容')
+                }
+                if (isPwd == pwd1){
+                    console.log(username, pwd1)
+                    axios.post("/courseware/login_php/register.php",
+                    {
+                        username: username,
+                        password: pwd1
+                    }).then(res=>console.log(res.data))
+                }else{
+                    alert('两次输入的密码不一致')
+                }
+            },
+            login(){
+                var pwd = document.getElementById('pwd').value;
+                var username = document.getElementById('username').value;             
+                axios.post("/courseware/login_php/login.php",
+                {
+                    username: username,
+                    password: pwd
+                }).then(res=>console.log(res.data))
+            }
+        },
+        created() {
+            this.isLogin = localStorage.isLogin * 1 ? true : false;
+            console.log(localStorage.isLogin);
+        },
+    })
+</script>

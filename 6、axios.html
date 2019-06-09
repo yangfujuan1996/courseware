@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/axios.min.js"></script>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    // http://localhost/courseware/php/get.php
+    // get请求
+
+    // 后端传来的数据必须是属性名称为双引号的标准json字符串，否则JSON.parse不能正确解析
+
+    // axios.get('/courseware/php/get.php')
+    //      .then(res=>console.log(JSON.parse(res.data)));
+
+    // axios.post('/courseware/php/get.php')
+    //      .then(res=>console.log(res.data));
+
+    // axios.get('/courseware/php/get.php', {
+    //     params: {
+    //         name: '笨笨',
+    //         age: 18
+    //     }
+    // })
+    //      .then(res=>console.log( res.data ));
+
+    axios.post('/courseware/php/post.php', {
+        name: '笨笨',
+        age: 18
+    },
+    {
+        transformRequest: [function(data){
+        var dataStr = '';
+        for(var i in data){
+            dataStr += '&' + i + "=" + data[i];
+        }
+        // 将得到的拼接字符串的第一个&符号删除掉
+        return dataStr.slice(1);
+        }]
+    },       
+    {
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+    }
+    )
+         .then(res=>console.log( res.data ));
+</script>

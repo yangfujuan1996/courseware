@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="../dist/css/bootstrap.css">
+    <style>
+        tbody td:last-child, tfoot td:last-child{
+            padding-right: 20px!important;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+        <div class="rows">
+            <h2>商品库存清单</h2>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center">序号</th>
+                        <th class="text-center">商品名称</th>
+                        <th class="text-center">单价</th>
+                        <th class="text-center">数量</th>
+                        <th class="text-center">小计</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, index) in products" :key="index">
+                        <td class="text-center">{{index + 1}}</td>
+                        <td class="text-center">{{item.name}}</td>
+                        <td class="text-right">{{item.price}}</td>
+                        <td class="text-center">
+                            <span class="btn btn-sm" @click="reduceNum(item)">-</span>
+                            <input type="text" v-model=item.count class="text-center">
+                            <span class="btn btn-sm" @click="addNum(item)">+</span>
+                        </td>
+                        <td class="text-right">{{item.price*item.count}}元</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <td colspan="4" rowspan="1" class="text-right">
+                        总计：
+                    </td>
+                    <td class="text-right">{{countMoney}}</td>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <!-- <div id="app" class="container">
+        <input type="button" class="btn btn-default" @click='setSex(0)' value="男生">
+        <input type="button" class="btn btn-default" @click='setSex(1)' value="女生">
+        <input type="button" class="btn btn-default" @click='setSex(2)' value="全部">
+        <div class="rows">
+            <div class="col-sm-3 col-md-3 col-xs-3 text-center">姓名</div>
+            <div class="col-sm-3 col-md-3 col-xs-3 text-center">性别</div>
+            <div class="col-sm-3 col-md-3 col-xs-3 text-center">年龄</div>
+            <div class="col-sm-3 col-md-3 col-xs-3 text-center">爱好</div>
+        </div>
+        <div class="rows" v-for="(item, index) in filterStudent" :key="index">
+            <div class="col-sm-3 col-md-3 col-xs-3 text-center">{{item.name}}</div>
+            <div class="col-sm-3 col-md-3 col-xs-3 text-center">{{item.sex}}</div>
+            <div class="col-sm-3 col-md-3 col-xs-3 text-center">{{item.age}}</div>
+            <div class="col-sm-3 col-md-3 col-xs-3 text-center">{{item.hobby}}</div>
+        </div>        
+    </div> -->
+
+
+</body>
+</html>
+
+<script>
+    var data = [
+        {
+            name:'可乐',
+            price: 3,
+            count: 10,
+        },
+        {
+            name:'芬达',
+            price: 4,
+            count: 10,
+        },
+        {
+            name:'七喜',
+            price: 4,
+            count: 10,
+        },
+        {
+            name:'王老吉',
+            price: 5,
+            count: 10,
+        },
+        {
+            name:'小茗同学',
+            price: 8,
+            count: 10,
+        },
+        {
+            name:'茉莉绿茶',
+            price: 3,
+            count: 8,
+        },
+    ]
+    var names = [
+        {
+            name: '小明',
+            sex: '男',
+            age: 18,
+            hobby: '上课'
+        },
+        {
+            name: '笨笨',
+            sex: '女',
+            age: 3,
+            hobby: '吃肉'
+        },
+        {
+            name: '天天',
+            sex: '男',
+            age: 18,
+            hobby: '打游戏'
+        },
+        {
+            name: '翔翔',
+            sex: '男',
+            age: 18,
+            hobby: '运动'
+        },
+        {
+            name: '亮亮',
+            sex: '男',
+            age: 18,
+            hobby: '玩游戏'
+        },
+        {
+            name: '丽丽',
+            sex: '女',
+            age: 15,
+            hobby: '画画'
+        },
+        {
+            name: '娜娜',
+            sex: '女',
+            age: 18,
+            hobby: '看电视'
+        },
+
+    ]
+    var vm  = new Vue({
+        el: '#app',
+        data: {
+            products: data,
+            student: names,
+            isSex: 'all'
+        },
+        methods: {
+            reduceNum(p){
+                if (p.count <= 0 ) return;
+                p.count --;
+            },
+            addNum(p) {
+                p.count ++;
+            },
+
+            setSex(num){
+                if(num == 0){
+                    this.isSex = '男';
+                }else if(num == 1){
+                    this.isSex = '女';
+                }else{
+                    this.isSex = 'all';
+                }                
+            }
+        },
+        computed: {
+            countMoney() {
+                return this.products.reduce(function(total, p){
+                    return total + p.count * p.price;
+                },0)
+            },
+            filterStudent(){
+                if (this.isSex == 'all') return this.student;
+                var isSex = this.isSex;
+                return this.student.filter(function(item, index, array){
+                    return item.sex == isSex;
+                })
+            },
+        },
+        updated(){
+            console.log('页面数据更新了')
+        }
+    })
+</script>

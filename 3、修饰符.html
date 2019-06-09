@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    <style>
+        div{
+            padding: 50px;
+        }
+        .div1{
+            background-color: red;
+        }
+        .div2{
+            background-color: yellow;
+        }
+        .div3{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="div1">
+            <div class="div2" @click.self="f1">
+                <div class="div3" @click="f2"></div>
+                <input type="text" @keydown.prevent="f3" v-model="text">
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+<script>
+    new Vue({
+        el: "#app",
+        data:{
+            text: '',
+        },
+        methods:{
+            f1(){
+                console.log('fn1');
+            },
+            f2(){
+                console.log('fn2');
+            },
+            f3(ev){
+                this.text += ev.key.toUpperCase();
+                // console.log('keydown', ev)
+            }
+        }
+    })
+</script>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue   v-if</title>
+    <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="../dist/css/bootstrap.css">
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="rows">
+                <p class="col-md-6 col-md-offset-6">
+                    <span class="btn btn-default" :class="{'btn-primary': isLogin}" @click="isToggleLogin(true)">登录</span>
+                    <span class="btn btn-default" :class="{'btn-primary': !isLogin}" @click="isToggleLogin(false)">注册</span>
+                </p>
+            </div>
+            <div class="rows" v-if="isLogin">
+                <div class="col-md-6 col-md-offset-3">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="username">用户名：</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" id="username">
+                            </div>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="pwd">密码：</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="password" id="pwd">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <input class="btn btn-success" type="button" value="登录">
+                            </div>
+                        </div>
+                        
+                    </form>                   
+                </div>
+            </div>
+            
+            <div class="rows" v-else>
+                <div class="col-md-6 col-md-offset-3">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="username">用户名：</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" id="username">
+                            </div>                        
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="pwd">密码：</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="password" id="pwd">
+                            </div>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="isPwd">确认密码：</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="password" id="isPwd">
+                            </div>          
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <input class="btn btn-success" type="button" value="注册">
+                            </div>
+                        </div>
+                    </form>                   
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
+<script>
+    // 保持原来状态：将值从内存中转移到可以持续存储的位置，页面刷新时，数据不会被丢失
+    // 1、cookie    浏览器用户信息     限制： 大小限制(1024kb左右)  数量限制(20-50) 目前很多浏览器不限制条数
+    // 2、localStorage   本地持久化存储    
+    //      大小是浏览器可以配置的（默认大小50，随着浏览器升级会变化）
+    //      只要不主动清除，就不会消失         数量不会限制
+    // 操作localStorage
+    // 1、像操作对象一样
+
+    // 添加属性
+    // localStorage.name = '小明'
+    // 获取属性值
+    // console.log(localStorage.name)
+    // 删除对象属性，不能删除变量
+    // delete localStorage.name;
+
+    // localStorage.setItem('age',18);
+    // console.log(typeof(localStorage.age));
+    localStorage.setItem('person',JSON.stringify({name: '笨笨', age: 2}));
+    // console.log(localStorage.person);
+    console.log(localStorage.getItem('person'));
+    localStorage.removeItem('person');
+    // localStorage.clear();
+    
+
+
+
+
+
+
+
+
+
+    new Vue({
+        el: '#app',
+        data: {
+            isLogin: true,
+        },
+        computed:{
+            loginStatus(){
+                isLogin = localStorage.isLogin ? true : false;
+                return isLogin;
+            }
+        },
+        methods: {
+            isToggleLogin(status){
+                this.isLogin = status;
+                // localStorage.isLogin = status;  
+                localStorage.isLogin = Number(status);              
+            }
+        },
+        created() {
+            this.isLogin = localStorage.isLogin * 1 ? true : false;
+            console.log(localStorage.isLogin);
+        }
+    })
+</script>
