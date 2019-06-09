@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-filter</title>
+    <script src="../js/vue.js"></script>
+    <link rel="stylesheet" href="../dist/css/bootstrap.css">
+</head>
+<body>
+    <div id="app" class="container">
+        <div class="rows">
+            <div>
+                单价： {{price | toPrice | addSymble}} 元
+            </div>
+            <div>
+                {{name | uppercase}}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    // 定义全局过滤器， filter(过滤器名称， 实现功能函数)
+    Vue.filter("toPrice",function(val){
+        return val.toFixed(2);
+    })
+    Vue.filter('addSymble', function(val, curency){
+        if (curency){
+            return curency + val;
+        }
+        return "￥" + val;
+    })
+
+
+    Vue.filter('uppercase', function(val){
+        var arr = val.split('');
+        var newArr = arr.map(function(v){
+            console.log(v);
+            return v.charAt().toUpperCase() + v.slice(1);
+        })
+        return newArr.join('');
+    })
+
+    function fn1(cd){
+        console.log(123);
+        // cd && cd();  // 默认约定如果传了参数，这个参数一定是一个函数
+        typeof(cd) === 'function' && cd();
+        // if(cd){
+        //     cd();
+        // }
+    }
+
+    // fn1();
+    fn1(function(){
+        console.log('hahahah');
+    })
+
+
+
+    new Vue({
+        el: '#app',
+        data: {
+            price: 20,
+            name: 'hahDISIjkkjd'
+        }
+    });
+</script>

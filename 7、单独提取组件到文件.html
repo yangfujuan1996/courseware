@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        h3{
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            font-weight: normal;
+            color: #888;
+        }
+        /* h2{
+            font-size: 24px
+        }
+        h2 span{
+            font-size: 80%;
+            color: #888888;
+            padding-left: 10px; 
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 普通属性只能传字符串 -->
+        <!-- 如果需要传其他类型的值，需要使用v-bind来绑定属性 -->
+        <!-- <my-component title="标题" content="内容"></my-component>
+        <hr> -->
+        <!-- <hello-component :title="title" :content="content"></hello-component> -->
+
+
+        <!-- v-for的两个要点； -->
+        <!-- 1、不要与v-if同事使用   2、所有使用v-for的标签都应该绑定一个key属性 -->
+        <hello-component v-for="(msg, index) in news" :title="msg.title" :content="msg.content" :key="index"></hello-component>
+        <title-component :title="'标题'" :subtitle="'副标题'"></title-component>
+    </div>
+</body>
+</html>
+<!-- <template id="myComponent">
+    <div>
+        <h2>{{title}}</h2>
+        <h3>作者：匿名  发布时间： 2019年6月9日</h3>
+        <p>{{content}}</p>
+    </div>
+</template> -->
+<script src="data.js"></script>
+<script src="components.js"></script>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            news: datas,
+            title: '父级中的标题',
+            content: '父级中的内容'
+        },
+        components: {
+            'hello-component': myComponent,
+            'title-component': {
+                template: `
+                    <h2 :style='titleStyle'>{{title}}
+                        <span :style='subtitleStyle'>{{subtitle}}</span>
+                    </h2>
+                    `,
+                data(){
+                    return {
+                        titleStyle: {
+                            fontSize: 30 + 'px'  
+                        },
+                        subtitleStyle: {
+                            fontSize: '80%',
+                            color: '#888888',
+                            paddingLeft: 10 + 'px',
+                        }
+                    }                    
+                },
+                props: [
+                    'title',
+                    'subtitle'
+                ]
+            }
+        }
+    })
+</script>

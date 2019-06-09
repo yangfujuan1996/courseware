@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <link rel="stylesheet" href="../dist/css/bootstrap.css">
+</head>
+<template id="myGoods">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th class="text-center">序号</th>
+                <th class="text-center">商品名称</th>
+                <th class="text-center">单价/元</th>
+                <th class="text-center">数量/个</th>
+                <th class="text-center">小计</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(item, index) in datas" :key="index">
+                <td class="text-center">{{index+1}}</td>
+                <td class="text-center">{{item.name}}</td>
+                <td class="text-right">{{item.price | toFixed}}</td>
+                <td class="text-center"><span class="btn btn-sm" @click="subNumber(item)">-</span><input class="text-center" type="text" v-model="item.count"><span class="btn btn-sm" @click="addNumber(item)">+</span></td>
+                <td class="text-right">{{item.count*item.price | toFixed}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="text-right">总计：</td>
+                <td class="text-right">{{totalMoney | toFixed}}</td>
+            </tr>
+        </tfoot>
+    </table>
+</template>
+<body>
+    <div id="app" class="container">
+        <my-goods></my-goods>
+    </div>
+</body>
+</html>
+<script>
+    var datas = [
+        {
+            name: '雪碧',
+            price: 3,
+            count: 12
+        },
+        {
+            name: '可口可乐',
+            price: 3,
+            count: 10
+        },
+        {
+            name: '七喜',
+            price: 2.5,
+            count: 10
+        },
+        {
+            name: '百事可乐',
+            price: 3,
+            count: 10
+        },
+        {
+            name: '加多宝',
+            price: 4,
+            count: 10
+        },
+        {
+            name: '和其正',
+            price: 4,
+            count: 10
+        },
+    {
+        name: '健力宝',
+        price: 5,
+        count: 10
+    }
+    ];
+    Vue.filter('toFixed',function(val){
+        return val.toFixed(2);
+    })
+    new Vue({
+        el: '#app',
+        data: {
+
+        },
+        components:{
+            'my-goods': {
+                data(){
+                    return {
+                        data: datas,
+                    }
+                },
+                template: '#myGoods',
+                methods: {
+                    addNumber(item){
+                        item.count ++;
+                    },
+                    subNumber(item){
+                        if(item.count <= 0) return;
+                        item.count --;
+                    }
+                },
+                computed:{
+                    totalMoney(){
+                         return datas.reduce(function(total, item){
+                            return total + item.price*item.count;
+                        },0)
+
+
+                    }
+                }
+            }            
+        }
+    })
+</script>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<template id="myComponent">
+    <div>
+        <h2>{{title}}</h2>
+        <p>{{content}}</p>
+    </div>
+</template>
+<template id="myComponent2">
+    <div>
+        <h2>{{title}}</h2>
+        <p>{{content}}</p>
+    </div>
+</template>
+<body>
+    <div id="app">
+        <my-component2></my-component2>
+    </div>
+    <div id="app2">
+        <my-component></my-component>
+    </div>
+</body>
+</html>
+<script>
+    Vue.component('my-component',{
+        data(){
+            return {
+                title: '标题',
+                content: '内容',
+            }
+        },
+        template: '#myComponent'
+    })
+    Vue.component('my-component2',{
+        data(){
+            return {
+                title: '标题哈哈哈哈',
+                content: '内容哈哈哈哈',
+            }
+        },
+        template: '#myComponent2'
+    })
+    new Vue({
+        el: '#app',
+        data: {
+
+        }
+    })
+    new Vue({
+        el: '#app2',
+        data: {
+
+        }
+    })
+</script>
