@@ -66,8 +66,12 @@ export default {
                 }
             }).then(res => {
                 if (res.data.success) {
-                    alert('注册成功，请登录！');
-                    return ;
+                    // alert('注册成功，请登录！');
+
+                    // 跳转到指定路由，并且在历史记录中有记录
+                    this.$router.push({path: '/Login'})
+                    // replace方法也可以跳转到指定路由，但是在历史记录中不会有记录
+                    // this.$router.replace({path: '/Login'})
                 }else{
                     alert(res.data.msg)
                 }

@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import BootStrap from './assets/dist/css/bootstrap.css'
 import Login from './components/Login'
 import Register from './components/Register'
+import Welcome from './components/Welcome'
 import Axios from 'axios'
 
 Vue.use(BootStrap);
@@ -30,6 +31,14 @@ let routes = [
   {
     path: '/register',
     component: Register
+  },
+  {
+    path: '/Welcome',
+    component: Welcome
+  },
+  {
+    path: '/*',
+    redirect: '/login'
   }
 ]
 
