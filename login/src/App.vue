@@ -1,25 +1,23 @@
 <template>
   <div id="app" class="container">
-    <div v-if="loginStatus">
-      <div class="rows">
-        <p>
-          欢迎回来，{{username}}!
-          <span class="btn btn-sm btn-link" @click="loginOut()">退出</span>
-        </p>
-      </div>
-    </div>
-    <div v-else>
+      
+    <div>
       <h2 class="glyphicon glyphicon-pawn">登录注册</h2>
       <hr>
       <div class="rows">
-        <div class="col-md-6 col-sm-8 col-xs-10 col-md-offset-3 col-sm-offset-2 col-xs-offset-1">
+        <div class="col-md-6 col-sm-8 col-xs-10 col-md-offset-3 col-sm-offset-2 col-xs-offset-1" v-if="!checkout()">
           <router-link to="/login" class="btn btn-link">登录</router-link>
           <router-link to="/register" class="btn btn-link">注册</router-link>
         </div>
+        <div v-else>
+          <router-link to="/Welcome" class="btn btn-link">欢迎</router-link>
+        </div>
+        
       </div>
       <div class="rows">
         <div class="col-md-6 col-sm-8 col-xs-10 col-md-offset-3 col-sm-offset-2 col-xs-offset-1">
           <router-view></router-view>
+          
         </div>
       </div>
     </div>
@@ -34,22 +32,16 @@ export default {
   name: 'app',
   data () {
     return {
-      loginStatus: localStorage.loginStatus,
-      username: ''
     }
   },
   methods:{
-    loginOut(){
-      this.loginStatus = false;
-      localStorage.loginStatus = false;
-      this.username = localStorage.username = '';
-      console.log(this.loginStatus)
+    checkout(){
+      return localStorage.loginStatus;
     }
   },
-  // updated(){
-  //   this.loginStatus = localStorage.loginStatus;
-  //   this.username = localStorage.username;
-  // }
+  created(){
+    this.loginStatus = localStorage.loginStatus;
+  }
 }
 </script>
 

@@ -17,8 +17,8 @@ Vue.use(Axios)
 //   url: 'http://localhost/login_php/test.php'
 // }).then(requst => console.log(requst,111111))
 
-Axios.post('http://localhost/login_php/test.php')
-     .then(requst => console.log(requst,111111));
+// Axios.post('http://localhost/login_php/test.php')
+//      .then(requst => console.log(requst,111111));
 
 
 
@@ -33,7 +33,13 @@ let routes = [
     component: Register
   },
   {
+    // 静态路由
     path: '/Welcome',
+    component: Welcome
+  },
+  {
+    // 动态路由
+    path: '/Welcome/:name',
     component: Welcome
   },
   {

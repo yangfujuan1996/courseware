@@ -1,24 +1,28 @@
 <template>
-
-    <form class="form-horizontal" autocomplete="off">
-    <div class="form-group">
-        <label for="username" class="control-label col-md-3">用户名：</label>
-        <div class="col-md-9">
-        <input type="text" id="username" class="form-control" v-model="user">
-        </div>
+    <div class="rows">
+        <form class="form-horizontal" autocomplete="off">
+            <div class="form-group">
+                <label for="username" class="control-label col-md-3">用户名：</label>
+                <div class="col-md-9">
+                <input type="text" id="username" class="form-control" v-model="user">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="passwd" class="control-label col-md-3">密 码：</label>
+                <div class="col-md-9">
+                <input type="password" id="passwd" class="form-control" v-model="passwd">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-9 col-md-offset-3">
+                <input type="button" value="登录" class="btn btn-success" @click="login()">
+                </div>
+            </div>
+        </form>
+        <p>{{getUrlSearch}}</p>
     </div>
-    <div class="form-group">
-        <label for="passwd" class="control-label col-md-3">密 码：</label>
-        <div class="col-md-9">
-        <input type="password" id="passwd" class="form-control" v-model="passwd">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-9 col-md-offset-3">
-        <input type="button" value="登录" class="btn btn-success" @click="login()">
-        </div>
-    </div>
-    </form>
+    
+    
 
 </template>
 
@@ -29,7 +33,7 @@ export default {
         return{
             user: '',
             passwd: '',
-            loginStatus: false,
+            // loginStatus: false,
         }
     },
     methods: {
@@ -51,14 +55,18 @@ export default {
                 }
             }).then(res => {
                 if(res.data.success){
-                    this.loginStatus = true;
                     localStorage.loginStatus = true;
-                    localStorage.username = this.user;
-                    alert(this.loginStatus)
+                    this.$router.push({path: '/Welcome/' + this.user});
                 }else{
                     alert('用户名或密码不正确！！！')
                 }
             })
+        }
+    },
+    computed: {
+        getUrlSearch(){
+            // return location.search;
+            return this.$route.query;
         }
     }
 
