@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
-import Bootstrap from './assets/dist/css/bootstrap.css'
+import Bootstrap from './assets/css/bootstrap.css'
+// import Axios from 'axios'
 import Index from './components/index'
 import Menu from './components/menu'
 import Admin from './components/admin'
@@ -12,6 +13,9 @@ import History from './components/about/history'
 import OrderWord from './components/about/orderWord'
 import Contact from './components/about/contact'
 import ExpressInfo from './components/about/expressInfo'
+import Phone from './components/about/phone'
+import Person from './components/about/person'
+
 
 
 
@@ -19,12 +23,18 @@ import ExpressInfo from './components/about/expressInfo'
 
 Vue.use(VueRouter);
 Vue.use(Bootstrap);
+// Vue.use(Axios);
 
 let routes = [
   {
     path: '/',
     name: 'index',
-    component: Index
+    components: {
+      default: Index,
+      history: History,
+      orderWord: OrderWord,
+      expressInfo: ExpressInfo
+    }
   },
   {
     path: '/menu',
@@ -34,7 +44,49 @@ let routes = [
   {
     path: '/aboutMe',
     name: 'aboutMe',
-    component: AboutMe
+    components: {
+      default: AboutMe,
+      contact: Contact
+    },
+    children:[
+      {
+        path: '/history',
+        name: 'history',
+        component: History
+      },
+      {
+        path: '/orderWord',
+        name: 'orderWord',
+        component: OrderWord
+      },
+      {
+        path: '/contact',
+        name: 'contact',
+        components: {
+          default: Contact, 
+          person: Person         
+        },
+        children: [
+          {
+            path: '/phone',
+            name: 'phone',
+            component: Phone
+          },
+          {
+            path: '/person',
+            name: 'person',
+            component: Person
+          }
+        ],
+        redirect: '/person'
+      },
+      {
+        path: '/expressInfo',
+        name: 'expressInfo',
+        component: ExpressInfo
+      }
+    ],
+    redirect: '/contact'
   },
   {
     path: '/admin',
@@ -51,10 +103,10 @@ let routes = [
     name: 'login',
     component: Login
   },
-  {
-    path: '/*',
-    redirect: '/'
-  }
+  // {
+  //   path: '/*',
+  //   redirect: '/'
+  // }
 ]
 
 

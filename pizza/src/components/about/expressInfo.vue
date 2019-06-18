@@ -1,5 +1,44 @@
 <template>
     <div>
-        <h2>快递信息</h2>
+        <div class="index-footer">
+            <div class="footer-up">
+                快递信息
+            </div>
+            <div class="footer-lower">
+                <h4>快递信息</h4>
+                <p>1136815001@qq.com</p> 
+            </div>
+        </div>
     </div>
+    
 </template>
+
+
+<style >
+
+.index-footer{
+    border: 1px solid #666;
+    border-radius: 3px;
+    text-indent: 3em;
+    text-align: left;
+    padding: 0;
+    margin: 10px  10px 20px 0;
+    
+    
+}
+.footer-up{
+    font-size: 20px;
+    background-color: #eee;
+    height: 40px;
+    line-height: 40px;
+}
+.footer-lower{
+    border-top: 1px solid #666;
+    font-size: 15px;
+}
+.footer-lower h4{
+    margin: 20px 0;
+}
+
+
+</style>
