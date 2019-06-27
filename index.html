@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+
+    // 数组去重
+    Array.prototype.setCon = function() {
+        let res = [];
+        let obj = {};
+        for (var i = 0; i < this.length; i ++) {
+            if (!obj[this[i]]) {
+                res.push(this[i]);
+                obj[this[i]] = 1;
+            }
+        }
+        return res;
+    }
+    // let arr = [1,2,3,4,5,1,2,3,10];
+    // console.log(arr.setCon());
+
+    function add() {
+        let res = 0;
+        for (var i = 0; i < arguments.length; i ++) {
+            res += arguments[i];
+        }
+        return res;
+    };
+    console.log(add(1,2,3,4,5,1,2,3,10));
+
+    // ajax进行数据请求
+    var ajax = new XMLHttpRequest();
+    ajax.open();
+    ajax.send();
+    ajax.onreadystatechange( () => {
+
+    });
+    
+
+</script>
